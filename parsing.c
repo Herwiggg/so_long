@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 20:17:55 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/01 02:08:10 by almichel         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:44:43 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	*ft_check_retour(char *dest)
 
 	i = 0;
 
-	while (dest[i + 1] != '\0')
+	while (dest[i] != '\0')
 		i++;
-	if (dest[i] != '\n')
+	if (dest[i - 1] != '\n')
 	{
-		new_tab = malloc((ft_strlen(dest) + 1)* sizeof(char));
+		new_tab = malloc((ft_strlen(dest) + 2)* sizeof(char));
 		if (!new_tab)
 			return (NULL);
 		i = 0;
@@ -51,12 +51,13 @@ char	**ft_stock(char **dest, char *argv, int fd, int size)
 	if (size < 2)
 	{
 		write(2, "Error\n", 6);
-		write(2, "Map is not valid\n", 17);
+		write(2, "Map is not validdsn", 17);
 		return (NULL);
 	}
 	dest = malloc((size + 1) * sizeof(char *));
 	if (!dest)
 		return (NULL);
+	dest[size] = NULL;
 	while (i < size)
 	{
 		dest[i] = get_next_line(fd);

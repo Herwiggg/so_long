@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:10:12 by almichel          #+#    #+#             */
-/*   Updated: 2024/01/31 20:50:01 by almichel         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:34:27 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,13 @@ int		ft_check_ber(char *argv);
 int		ft_is_a_valid_map(char **map);
 int		ft_check_dimension(char **argv);
 int		ft_check_rectangular(char **argv);
+int		ft_check_wall(char **argv);
+int		ft_check_elements(char **argv);
+int 	ft_check_elements2(char **argv);
+
+/*---------Utils-----------*/
+int		ft_error_msg(char *str);
+int    	ft_count_lines(char **str);
+
+
 #endif

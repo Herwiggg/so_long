@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:30:52 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/02 01:34:34 by almichel         ###   ########.fr       */
+/*   Updated: 2024/02/06 01:02:39 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 int	ft_is_a_valid_map(char **map)
 {
+	int	items;
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	items = 0;
 	if (map[0] == NULL)
 		return (ft_error_msg("Error\nMap is empty\n"));
 	if (ft_check_dimension(map) == -1)
@@ -24,8 +31,10 @@ int	ft_is_a_valid_map(char **map)
 		return (ft_error_msg("Error\nMap is not surrounded by walls\n"));
 	if (ft_check_elements(map) == -1)
 		return (ft_error_msg("Error\nBad ressources\n"));
-	if (ft_check_elements2(map) == -1)
+	if (ft_check_elements2(map, &y, &x, &items) == -1)
 		return (ft_error_msg("Error\nBad ressources\n"));
+	if (pathfinding(map, y, x, &items) == 0)
+		return (ft_error_msg("Error\nNo path found\n"));
 	return (1);
 }
 

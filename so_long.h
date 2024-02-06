@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:10:12 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/02 01:34:27 by almichel         ###   ########.fr       */
+/*   Updated: 2024/02/06 01:01:56 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int		ft_check_dimension(char **argv);
 int		ft_check_rectangular(char **argv);
 int		ft_check_wall(char **argv);
 int		ft_check_elements(char **argv);
-int 	ft_check_elements2(char **argv);
+int 	ft_check_elements2(char **argv, int *x, int *y, int *items);
+int		pathfinding(char **tab, int y, int x, int *items);
 
 /*---------Utils-----------*/
 int		ft_error_msg(char *str);

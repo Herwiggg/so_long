@@ -6,13 +6,13 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 01:33:27 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/06 01:09:14 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/09 00:25:17 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int ft_check_elements2(char **argv, int *y, int *x, int *items)
+int ft_check_elements2(char **argv, int *y, int *x, int items, t_data *data)
 {
 	int	i;
 	int	j;
@@ -24,10 +24,16 @@ int ft_check_elements2(char **argv, int *y, int *x, int *items)
 		while (argv[i][j] && argv[i][j] != '\n')
 		{
 			if (argv[i][j] == '0' || argv[i][j] == '1')
+			{
+				if (argv[i][j] == '1') 
+					data->wall += 1;
 				j++;
+			}
 			else if (argv[i][j] == 'C' || argv[i][j] == 'E')
 				{
-					*items += 1;
+					if(argv[i][j] == 'C')
+						data->collectible += 1;
+					items += 1;
 					j++;
 				}
 			else if (argv[i][j] == 'P')
@@ -44,19 +50,19 @@ int ft_check_elements2(char **argv, int *y, int *x, int *items)
 	return (1);
 }
 
-int	pathfinding(char **tab, int y, int x, int *items)
+int	pathfinding(char **map, int y, int x, int items)
 {
 
-	if (tab[y][x] == '1')
+	if (map[y][x] == '1')
 		return (0);
-	if (tab[y][x] == 'C' || tab[y][x] == 'E')
-		*items -= 1;
-	tab[y][x] = '1';
-	pathfinding(tab, y - 1, x, items);
-	pathfinding(tab, y + 1, x, items);
-	pathfinding(tab, y, x - 1, items);
-	pathfinding(tab, y, x + 1, items);
-	if (*items == 0)
+	if (map[y][x] == 'C' || map[y][x] == 'E')
+		items -= 1;
+	map[y][x] = '1';
+	pathfinding(map, y - 1, x, items);
+	pathfinding(map, y + 1, x, items);
+	pathfinding(map, y, x - 1, items);
+	pathfinding(map, y, x + 1, items);
+	if (items == 0)
 		return (1);
 	return (0);
 }

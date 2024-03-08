@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:41:31 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/02 01:26:56 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:19:30 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,74 @@ int	ft_error_msg(char *str)
 	len = ft_strlen(str);
 	write (2, str, len);
 	return (-1);
+}
+
+int ft_error_msg2(char *str, char **tab)
+{
+	int	len;
+
+	ft_doublefree(tab, ft_count_height(tab));
+	len = ft_strlen(str);
+	write (2, str, len);
+	return (-1);
+}
+int	ft_count_len(char **map)
+{
+	int	i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (map[i][j] && map[i][j] != '\n')
+		j++;
+	return (j);
+}
+
+int	ft_count_height(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n')
+			j++;
+		i++;
+	}
+	return (i);
+}
+
+
+char **copy_double_tab(char **tab)
+{
+	char **map;
+	int		i;
+
+	i = 0;
+	map = malloc((ft_count_height(tab) + 1)* sizeof(char *));
+	if (!map)
+		return (NULL);
+	map[ft_count_height(tab)] = '\0';
+	while (i < ft_count_height(tab))
+	{
+		map[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	
+	return (map);
+}
+
+char	**ft_doublefree(char **tab, int k)
+{
+	int	i;
+
+	i = -1;
+	while (++i < k)
+		free(tab[i]);
+	free(tab);
+	return (NULL);
 }

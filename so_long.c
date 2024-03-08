@@ -6,48 +6,70 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:30:52 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/06 01:02:39 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/09 00:27:44 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_is_a_valid_map(char **map)
+int	ft_is_a_valid_map(t_data *data)
 {
-	int	items;
 	int	x;
 	int	y;
 
+	char **tab;
+	
 	x = 0;
 	y = 0;
-	items = 0;
-	if (map[0] == NULL)
+	data->items = 0;
+	if (data->map[0] == NULL)
 		return (ft_error_msg("Error\nMap is empty\n"));
-	if (ft_check_dimension(map) == -1)
+	if (ft_check_dimension(data->map) == -1)
 		return (ft_error_msg("Error\nMap is not valid\n"));
-	if (ft_check_rectangular(map) == -1)
+	if (ft_check_rectangular(data->map) == -1)
 		return (ft_error_msg("Error\nMap is not rectangular\n"));
-	if (ft_check_wall(map) == -1)
+	if (ft_check_wall(data->map) == -1)
 		return (ft_error_msg("Error\nMap is not surrounded by walls\n"));
-	if (ft_check_elements(map) == -1)
+	if (ft_check_elements(data->map) == -1)
 		return (ft_error_msg("Error\nBad ressources\n"));
-	if (ft_check_elements2(map, &y, &x, &items) == -1)
+	if (ft_check_elements2(data->map, &y, &x, data->items, data) == -1)
 		return (ft_error_msg("Error\nBad ressources\n"));
-	if (pathfinding(map, y, x, &items) == 0)
-		return (ft_error_msg("Error\nNo path found\n"));
+	tab = copy_double_tab(data->map);
+	if (pathfinding(tab, y, x, data->items) == 0)
+		return (ft_error_msg2("Error\nNo path found\n", tab));
+	ft_doublefree(tab, ft_count_height(tab));
 	return (1);
+}
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
 int	main(int argc, char **argv)
 {
-	char	**map;
-
-	map = NULL;
+	t_data data;
+// /	t_coord coord;
+	
+	data.map = NULL;
+	ft_bzero(&data, sizeof(t_data));
 	if (argc < 2 || ft_check_ber(argv[1]) == -1)
 		return (-1);
-	map = ft_read_and_stock(argv[1]);
-	if (map == NULL)
+	data.map = ft_read_and_stock(argv[1]);
+	if (data.map == NULL)
 		return (-1);
-	if (ft_is_a_valid_map(map) == -1)
+	if (ft_is_a_valid_map(&data) == -1)
 		return (-1);
+//	ft_stock_coords(coord);
+	data.mlx = mlx_init();
+	data.mlx_wind = mlx_new_window(data.mlx, ft_count_len(data.map) * 64, ft_count_height(data.map) * 64, "MLX42");
+	ft_display_map(data);
+	mlx_loop(data.mlx);
+//	data.mlx_wind = data.mlx_wind;
+	//mlx_destroy_window(mlx, mlx_win);
+  //  mlx_destroy_display(mlx);
+
 }

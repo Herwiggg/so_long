@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2024/03/09 00:27:23 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/10 02:11:19 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,8 @@ int		ft_count_height(char **map);
 int		ft_count_len(char **map);
 char 	**copy_double_tab(char **tab);
 char	**ft_doublefree(char **tab, int k);
+void	ft_stock_coords(t_data *data);
+void	ft_malloc_struct(t_data *data);
+
 
 #endif

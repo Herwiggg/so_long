@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:30:52 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/09 00:27:44 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/10 01:49:09 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (ft_is_a_valid_map(&data) == -1)
 		return (-1);
-//	ft_stock_coords(coord);
+	ft_stock_coords(&data);
 	data.mlx = mlx_init();
 	data.mlx_wind = mlx_new_window(data.mlx, ft_count_len(data.map) * 64, ft_count_height(data.map) * 64, "MLX42");
 	ft_display_map(data);

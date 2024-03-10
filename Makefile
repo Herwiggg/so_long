@@ -1,5 +1,5 @@
 NAME		= so_long
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -g 
 INCLUDES 	= -I/usr/include -Imlx
 MLX_FLAGS 	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 MLX_DIR 	= ./minilibx-linux
@@ -8,7 +8,7 @@ LIBFT_DIR	= ./libft42
 LIBFT_LIB	= $(LIBFT_DIR)/libft.a
 GNL_DIR 	= ./get_next_line
 GNL_LIB		= $(GNL_DIR)/gnl.a
-SRCS 		=	so_long.c parsing.c is_a_valid_map.c is_a_valid_map2.c utils.c display_map.c
+SRCS 		=	so_long.c parsing.c is_a_valid_map.c is_a_valid_map2.c utils.c display_map.c stock_coords.c
 OBJS 		= $(SRCS:.c=.o)
 
 all: $(MLX_LIB) $(LIBFT_LIB) $(GNL_DIR) $(NAME)

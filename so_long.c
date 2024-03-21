@@ -52,8 +52,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 int	main(int argc, char **argv)
 {
 	t_data data;
-// /	t_coord coord;
-	
+
 	data.map = NULL;
 	ft_bzero(&data, sizeof(t_data));
 	if (argc < 2 || ft_check_ber(argv[1]) == -1)
@@ -67,6 +66,8 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	data.mlx_wind = mlx_new_window(data.mlx, ft_count_len(data.map) * 64, ft_count_height(data.map) * 64, "MLX42");
 	ft_display_map(data);
+	mlx_hook(data.mlx_wind, 2, (1L << 0), ft_handle_input, &data);
+	mlx_hook(data.mlx_wind,  17, (1L << 0), ft_exit, &data);
 	mlx_loop(data.mlx);
 //	data.mlx_wind = data.mlx_wind;
 	//mlx_destroy_window(mlx, mlx_win);

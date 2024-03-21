@@ -23,6 +23,23 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <X11/keysym.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+
+
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+
+# define KEY_UP  			65362
+# define KEY_LEFT  			65361
+# define KEY_RIGHT 			65363
+# define KEY_DOWN  			65364
+
+# define KEY_Q				113
+# define KEY_ESC  			65307
 
 typedef struct s_coin {
 	
@@ -86,6 +103,7 @@ char 	**copy_double_tab(char **tab);
 char	**ft_doublefree(char **tab, int k);
 void	ft_stock_coords(t_data *data);
 void	ft_malloc_struct(t_data *data);
-
+int		ft_handle_input(int keysym, t_data *data);
+int 	ft_exit(t_data *data);
 
 #endif

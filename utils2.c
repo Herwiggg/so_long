@@ -1,22 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_a_valid_map.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 20:19:45 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/02 01:33:51 by almichel         ###   ########.fr       */
+/*   Created: 2024/02/01 16:41:31 by almichel          #+#    #+#             */
+/*   Updated: 2024/03/07 15:19:30 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int ft_exit(t_data *data)
+char **copy_double_tab(char **tab)
 {
-    ft_doublefree(data->map, ft_count_height(data->map));
-    free(data->collectible_c);
-    free(data->wall_c);
-    mlx_destroy_window(data->mlx, data->mlx_wind);
-    exit (EXIT_FAILURE);
+	char **map;
+	int		i;
+
+	i = 0;
+	map = malloc((ft_count_height(tab) + 1)* sizeof(char *));
+	if (!map)
+		return (NULL);
+	map[ft_count_height(tab)] = '\0';
+	while (i < ft_count_height(tab))
+	{
+		map[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	
+	return (map);
+}
+
+char	**ft_doublefree(char **tab, int k)
+{
+	int	i;
+
+	i = -1;
+	while (++i < k)
+		free(tab[i]);
+	free(tab);
+	return (NULL);
 }

@@ -91,19 +91,23 @@ int		ft_check_elements(char **argv);
 int 	ft_check_elements2(char **argv, int *x, int *y, int items, t_data *data);
 int		pathfinding(char **tab, int y, int x, int items);
 
+/*---------MLX-----------*/
+void	ft_display_map(t_data data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		ft_handle_input(int keysym, t_data *data);
+int 	ft_exit(t_data *data);
+void	ft_mlx_init(t_data *data);
+
 /*---------Utils-----------*/
 int		ft_error_msg(char *str);
 int 	ft_error_msg2(char *str, char **tab);
 int    	ft_count_lines(char **str);
-void	ft_display_map(t_data data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		ft_count_height(char **map);
 int		ft_count_len(char **map);
 char 	**copy_double_tab(char **tab);
 char	**ft_doublefree(char **tab, int k);
 void	ft_stock_coords(t_data *data);
 void	ft_malloc_struct(t_data *data);
-int		ft_handle_input(int keysym, t_data *data);
-int 	ft_exit(t_data *data);
+
 
 #endif

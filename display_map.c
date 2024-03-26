@@ -36,4 +36,9 @@ void	ft_display_map(t_data data)
 		 size_y = size_y + 64;
 		 y++;
 	}
+	int i = 0;
+	while (data.map[i])
+		printf("%s\n", data.map[i++]);
+	
+	printf("-----------------------\n");
 }

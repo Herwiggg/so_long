@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2024/03/10 02:11:19 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:32:35 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ char 	**copy_double_tab(char **tab);
 char	**ft_doublefree(char **tab, int k);
 void	ft_stock_coords(t_data *data);
 void	ft_malloc_struct(t_data *data);
-
-
+int 	ft_check_above(t_data *data);
+int		ft_check_down(t_data *data);
+int 	ft_check_right(t_data *data);
+int 	ft_check_left(t_data *data);
+void 	move_player_top(t_data *data);
+void 	move_player_left(t_data *data);
+void 	move_player_right(t_data *data);
+void 	move_player_down(t_data *data);
 #endif

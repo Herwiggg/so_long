@@ -8,7 +8,7 @@ LIBFT_DIR	= ./libft42
 LIBFT_LIB	= $(LIBFT_DIR)/libft.a
 GNL_DIR 	= ./get_next_line
 GNL_LIB		= $(GNL_DIR)/gnl.a
-SRCS 		=	so_long.c parsing.c is_a_valid_map.c is_a_valid_map2.c utils.c display_map.c stock_coords.c handle_input.c exit.c utils2.c mlx_init.c player_move.c
+SRCS 		=	so_long.c parsing.c is_a_valid_map.c is_a_valid_map2.c utils.c display_map.c stock_coords.c handle_input.c exit.c utils2.c mlx_init.c player_move.c player_move2.c player_move3.c
 OBJS 		= $(SRCS:.c=.o)
 
 all: $(MLX_LIB) $(LIBFT_LIB) $(GNL_DIR) $(NAME)

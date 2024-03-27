@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2024/03/27 20:48:16 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:18:11 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,14 @@ void		move_player_left(t_data *data);
 void		move_player_right(t_data *data);
 void		move_player_down(t_data *data);
 char		*image_player(t_data *data);
+void		move_collectible1(t_data *data, int y, int x, int sign);
+void		move_victory1(t_data *data, int y, int x, int sign);
+void		move_empty1(t_data *data, int y, int x, int sign);
+void		move_campfire1(t_data *data, int y, int x, int sign);
+void		move_collectible2(t_data *data, int y, int x, int sign);
+void		move_victory2(t_data *data, int y, int x, int sign);
+void		move_empty2(t_data *data, int y, int x, int sign);
+void		move_campfire2(t_data *data, int y, int x, int sign);
 
 /*---------Utils-----------*/
 int			ft_error_msg(char *str);

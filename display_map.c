@@ -36,9 +36,18 @@ void	ft_display_map(t_data data)
 		 size_y = size_y + 64;
 		 y++;
 	}
-	int i = 0;
-	while (data.map[i])
-		printf("%s\n", data.map[i++]);
-	
-	printf("-----------------------\n");
+	ft_print_movements(&data);
+}
+
+void	ft_print_movements(t_data *data)
+{
+	char	*move;
+	char	*phrase;
+
+	move = ft_itoa(data->move);
+	phrase = ft_strjoin("Movements : ", move);
+	mlx_string_put(data->mlx, data->mlx_wind, 40, 20, 99999, phrase);
+	data->move = data->move + 1;
+	free(move);
+	free(phrase);
 }

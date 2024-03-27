@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2024/03/26 18:32:35 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 02:48:48 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_data {
 	int		img_width;
 	int		img_height;
 	int		collectible;
+	int		move;
 	t_coord		*wall_c;
 	t_coord		player;
 	t_coord		exit;
@@ -97,6 +98,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		ft_handle_input(int keysym, t_data *data);
 int 	ft_exit(t_data *data);
 void	ft_mlx_init(t_data *data);
+void	ft_print_movements(t_data *data);
 
 /*---------Utils-----------*/
 int		ft_error_msg(char *str);
@@ -116,4 +118,6 @@ void 	move_player_top(t_data *data);
 void 	move_player_left(t_data *data);
 void 	move_player_right(t_data *data);
 void 	move_player_down(t_data *data);
+int 	ft_victory(t_data *data);
+
 #endif

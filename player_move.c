@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:28:32 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/26 20:13:39 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 02:49:29 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void move_player_top(t_data *data)
 			data->map[y][x] = '0';
 			data->player.y = (y - 1) * 64;
 			data->player.x = x * 64;
+			data->move++;
 			ft_display_map(*data);
-			ft_exit(data);
+			ft_victory(data);
 		}
 	else if (data->map[y - 1][x] == '0' || data->map[y - 1][x] == 'P')
 	{
@@ -55,6 +56,7 @@ void move_player_top(t_data *data)
 	}
 	else
 		return;
+	data->move++;
 	ft_display_map(*data);
 }
 
@@ -81,8 +83,9 @@ void move_player_left(t_data *data)
 			data->map[y][x] = '0';
 			data->player.y = y * 64;
 			data->player.x = (x - 1) * 64;
+			data->move++;
 			ft_display_map(*data);
-			ft_exit(data);
+			ft_victory(data);
 		}
 	else if (data->map[y][x - 1] == '0' || data->map[y][x - 1] == 'P')
 	{
@@ -101,6 +104,7 @@ void move_player_left(t_data *data)
 	}
 	else
 		return;
+	data->move++;
 	ft_display_map(*data);
 }
 
@@ -127,8 +131,9 @@ void move_player_right(t_data *data)
 			data->player.y = y * 64;
 			data->player.x = (x + 1) * 64;
 			data->map[y][x] = '0';
+			data->move++;
 			ft_display_map(*data);
-			ft_exit(data);
+			ft_victory(data);
 		}
 	else if (data->map[y][x + 1] == '0' || data->map[y][x + 1] == 'P')
 	{
@@ -148,6 +153,7 @@ void move_player_right(t_data *data)
 	}
 	else	
 		return;
+	data->move++;
 	ft_display_map(*data);
 }
 
@@ -174,8 +180,9 @@ void move_player_down(t_data *data)
 			data->map[y][x] = '0';
 			data->player.y = (y + 1) * 64;
 			data->player.x = x * 64;
+			data->move++;
 			ft_display_map(*data);
-			ft_exit(data);
+			ft_victory(data);
 		}
 	else if (data->map[y + 1][x] == '0' || data->map[y + 1][x] == 'P')
 	{
@@ -194,5 +201,6 @@ void move_player_down(t_data *data)
 	}
 	else
 		return;
+	data->move++;
 	ft_display_map(*data);
 }

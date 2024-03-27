@@ -6,33 +6,29 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:25:06 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/26 14:18:00 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:52:07 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "so_long.h"
 
 void	ft_malloc_struct(t_data *data)
 {
-	
 	data->collectible_c = malloc(data->collectible * sizeof(t_coin));
 	data->wall_c = malloc(data->wall * sizeof(t_coord));
-
 }
 
 void	ft_stock_coords(t_data *data)
 {
 	int	i;
 	int	j;
-	int k;
+	int	k;
 	int	l;
 
 	ft_malloc_struct(data);
 	l = 0;
 	k = 0;
 	i = 0;
-
 	while (data->map[i])
 	{
 		j = 0;
@@ -61,9 +57,7 @@ void	ft_stock_coords(t_data *data)
 				data->player.x = j * 64;
 			}
 			j++;
-		}			
+		}
 		i++;
 	}
 }
-
-

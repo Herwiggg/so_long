@@ -6,19 +6,19 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 20:19:45 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/26 18:32:01 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:50:26 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int ft_handle_input(int keysym, t_data *data)
+int	ft_handle_input(int keysym, t_data *data)
 {
-  if (keysym == KEY_Q || keysym == KEY_ESC)
-    ft_exit(data);
-  if ((keysym == KEY_UP || keysym == KEY_W) && ft_check_above(data) == 0)
-    move_player_top(data);
-  if ((keysym == KEY_LEFT || keysym == KEY_A) && ft_check_left(data) == 0)
+	if (keysym == KEY_Q || keysym == KEY_ESC)
+		ft_exit(data);
+	if ((keysym == KEY_UP || keysym == KEY_W) && ft_check_above(data) == 0)
+		move_player_top(data);
+	if ((keysym == KEY_LEFT || keysym == KEY_A) && ft_check_left(data) == 0)
 		move_player_left(data);
 	if ((keysym == KEY_RIGHT || keysym == KEY_D) && ft_check_right(data) == 0)
 		move_player_right(data);
@@ -27,54 +27,50 @@ int ft_handle_input(int keysym, t_data *data)
 	return (0);
 }
 
-int ft_check_above(t_data *data)
+int	ft_check_above(t_data *data)
 {
-  int x;
-  int y;
+	int	x;
+	int	y;
 
-  y = data->player.y / 64;
-  x = data->player.x / 64;
-
-  if (data->map[y - 1][x] == '1')
-    return (-1);
-  return (0);
+	y = data->player.y / 64;
+	x = data->player.x / 64;
+	if (data->map[y - 1][x] == '1')
+		return (-1);
+	return (0);
 }
 
-int ft_check_down(t_data *data)
+int	ft_check_down(t_data *data)
 {
-  int x;
-  int y;
+	int	x;
+	int	y;
 
-  y = data->player.y / 64;
-  x = data->player.x / 64;
-
-  if (data->map[y + 1][x] == '1')
-    return (-1);
-  return (0);
+	y = data->player.y / 64;
+	x = data->player.x / 64;
+	if (data->map[y + 1][x] == '1')
+		return (-1);
+	return (0);
 }
 
-int ft_check_right(t_data *data)
+int	ft_check_right(t_data *data)
 {
-  int x;
-  int y;
+	int	x;
+	int	y;
 
-  y = data->player.y / 64;
-  x = data->player.x / 64;
-
-  if (data->map[y][x + 1] == '1')
-    return (-1);
-  return (0);
+	y = data->player.y / 64;
+	x = data->player.x / 64;
+	if (data->map[y][x + 1] == '1')
+		return (-1);
+	return (0);
 }
 
-int ft_check_left(t_data *data)
+int	ft_check_left(t_data *data)
 {
-  int x;
-  int y;
+	int	x;
+	int	y;
 
-  y = data->player.y / 64;
-  x = data->player.x / 64;
-  
-  if (data->map[y][x - 1] == '1')
-    return (-1);
-  return (0);
+	y = data->player.y / 64;
+	x = data->player.x / 64;
+	if (data->map[y][x - 1] == '1')
+		return (-1);
+	return (0);
 }

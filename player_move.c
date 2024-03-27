@@ -6,39 +6,38 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:28:32 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 02:49:29 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:51:27 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void move_player_top(t_data *data)
+void	move_player_top(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = data->player.y / 64;
 	x = data->player.x / 64;
-  
 	if (data->map[y - 1][x] == 'C')
-		{
-			data->collectible--;
-			data->map[y - 1][x] = 'P';
-			data->player.y = (y - 1) * 64;
-			data->player.x = x * 64;
-			data->map[y][x] = '0';
-			data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
-		}
+	{
+		data->collectible--;
+		data->map[y - 1][x] = 'P';
+		data->player.y = (y - 1) * 64;
+		data->player.x = x * 64;
+		data->map[y][x] = '0';
+		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
+	}
 	else if (data->map[y - 1][x] == 'E' && data->collectible == 0)
-		{
-			data->map[y - 1][x] = 'P';
-			data->map[y][x] = '0';
-			data->player.y = (y - 1) * 64;
-			data->player.x = x * 64;
-			data->move++;
-			ft_display_map(*data);
-			ft_victory(data);
-		}
+	{
+		data->map[y - 1][x] = 'P';
+		data->map[y][x] = '0';
+		data->player.y = (y - 1) * 64;
+		data->player.x = x * 64;
+		data->move++;
+		ft_display_map(*data);
+		ft_victory(data);
+	}
 	else if (data->map[y - 1][x] == '0' || data->map[y - 1][x] == 'P')
 	{
 		data->map[y - 1][x] = 'P';
@@ -47,7 +46,7 @@ void move_player_top(t_data *data)
 		data->map[y][x] = '0';
 		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
 	}
-	else if(data->map[y - 1][x] == 'E' && data->collectible != 0)
+	else if (data->map[y - 1][x] == 'E' && data->collectible != 0)
 	{
 		data->map[y - 1][x] = 'P';
 		data->player.y = (y - 1) * 64;
@@ -55,38 +54,37 @@ void move_player_top(t_data *data)
 		data->map[y][x] = '0';
 	}
 	else
-		return;
+		return ;
 	data->move++;
 	ft_display_map(*data);
 }
 
-void move_player_left(t_data *data)
+void	move_player_left(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = data->player.y / 64;
 	x = data->player.x / 64;
-  
 	if (data->map[y][x - 1] == 'C')
-		{
-			data->collectible--;
-			data->map[y][x - 1] = 'P';
-			data->player.y = y * 64;
-			data->player.x = (x - 1) * 64;
-			data->map[y][x] = '0';
-			data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
-		}
+	{
+		data->collectible--;
+		data->map[y][x - 1] = 'P';
+		data->player.y = y * 64;
+		data->player.x = (x - 1) * 64;
+		data->map[y][x] = '0';
+		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
+	}
 	else if (data->map[y][x - 1] == 'E' && data->collectible == 0)
-		{
-			data->map[y][x - 1] = 'P';
-			data->map[y][x] = '0';
-			data->player.y = y * 64;
-			data->player.x = (x - 1) * 64;
-			data->move++;
-			ft_display_map(*data);
-			ft_victory(data);
-		}
+	{
+		data->map[y][x - 1] = 'P';
+		data->map[y][x] = '0';
+		data->player.y = y * 64;
+		data->player.x = (x - 1) * 64;
+		data->move++;
+		ft_display_map(*data);
+		ft_victory(data);
+	}
 	else if (data->map[y][x - 1] == '0' || data->map[y][x - 1] == 'P')
 	{
 		data->map[y][x - 1] = 'P';
@@ -95,7 +93,7 @@ void move_player_left(t_data *data)
 		data->map[y][x] = '0';
 		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
 	}
-	else if(data->map[y][x - 1] == 'E' && data->collectible != 0)
+	else if (data->map[y][x - 1] == 'E' && data->collectible != 0)
 	{
 		data->map[y][x - 1] = 'P';
 		data->player.y = y * 64;
@@ -103,87 +101,84 @@ void move_player_left(t_data *data)
 		data->map[y][x] = '0';
 	}
 	else
-		return;
+		return ;
 	data->move++;
 	ft_display_map(*data);
 }
 
-void move_player_right(t_data *data)
+void	move_player_right(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = data->player.y / 64;
 	x = data->player.x / 64;
-  
 	if (data->map[y][x + 1] == 'C')
-		{
-			data->collectible--;
-			data->map[y][x + 1] = 'P';
-			data->player.y = y * 64;
-			data->player.x = (x + 1) * 64;
-			data->map[y][x] = '0';
-			data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
-		}
+	{
+		data->collectible--;
+		data->map[y][x + 1] = 'P';
+		data->player.y = y * 64;
+		data->player.x = (x + 1) * 64;
+		data->map[y][x] = '0';
+		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
+	}
 	else if (data->map[y][x + 1] == 'E' && data->collectible == 0)
-		{
-			data->map[y][x + 1] = 'P';
-			data->player.y = y * 64;
-			data->player.x = (x + 1) * 64;
-			data->map[y][x] = '0';
-			data->move++;
-			ft_display_map(*data);
-			ft_victory(data);
-		}
+	{
+		data->map[y][x + 1] = 'P';
+		data->player.y = y * 64;
+		data->player.x = (x + 1) * 64;
+		data->map[y][x] = '0';
+		data->move++;
+		ft_display_map(*data);
+		ft_victory(data);
+	}
 	else if (data->map[y][x + 1] == '0' || data->map[y][x + 1] == 'P')
 	{
 		data->player.y = y * 64;
 		data->player.x = (x + 1) * 64;
 		data->map[y][x + 1] = 'P';
-		
 		data->map[y][x] = '0';
 		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
 	}
-	else if(data->map[y][x + 1] == 'E' && data->collectible != 0)
+	else if (data->map[y][x + 1] == 'E' && data->collectible != 0)
 	{
 		data->map[y][x + 1] = 'P';
 		data->player.y = y * 64;
 		data->player.x = (x + 1) * 64;
 		data->map[y][x] = '0';
 	}
-	else	
-		return;
+	else
+		return ;
 	data->move++;
 	ft_display_map(*data);
 }
 
-void move_player_down(t_data *data)
+void	move_player_down(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = data->player.y / 64;
 	x = data->player.x / 64;
-  
 	if (data->map[y + 1][x] == 'C')
-		{
-			data->collectible--;
-			data->map[y + 1][x] = 'P';
-			data->player.y = (y + 1) * 64;
-			data->player.x = x * 64;
-			data->map[y][x] = '0';
-			data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
-		}
+	{
+		data->collectible--;
+		data->map[y + 1][x] = 'P';
+		data->player.y = (y + 1) * 64;
+		data->player.x = x * 64;
+		data->map[y][x] = '0';
+		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
+	}
 	else if (data->map[y + 1][x] == 'E' && data->collectible == 0)
-		{
-			data->map[y + 1][x] = 'P';
-			data->map[y][x] = '0';
-			data->player.y = (y + 1) * 64;
-			data->player.x = x * 64;
-			data->move++;
-			ft_display_map(*data);
-			ft_victory(data);
-		}
+	{
+		data->map[y + 1][x] = 'P';
+		data->map[y][x] = '0';
+		data->player.y = (y + 1) * 64;
+		data->player.x = x * 64;
+		data->move++;
+		ft_display_map(*data);
+		ft_victory(data);
+	}
 	else if (data->map[y + 1][x] == '0' || data->map[y + 1][x] == 'P')
 	{
 		data->map[y + 1][x] = 'P';
@@ -192,7 +187,7 @@ void move_player_down(t_data *data)
 		data->map[y][x] = '0';
 		data->map[data->exit.y / 64][data->exit.x / 64] = 'E';
 	}
-	else if(data->map[y + 1][x] == 'E' && data->collectible != 0)
+	else if (data->map[y + 1][x] == 'E' && data->collectible != 0)
 	{
 		data->map[y + 1][x] = 'P';
 		data->player.y = (y + 1) * 64;
@@ -200,7 +195,7 @@ void move_player_down(t_data *data)
 		data->map[y][x] = '0';
 	}
 	else
-		return;
+		return ;
 	data->move++;
 	ft_display_map(*data);
 }

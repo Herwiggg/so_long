@@ -6,24 +6,23 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 20:17:55 by almichel          #+#    #+#             */
-/*   Updated: 2024/02/01 23:44:43 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:55:42 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 char	*ft_check_retour(char *dest)
 {
-	int	i;
-	char *new_tab;
+	int		i;
+	char	*new_tab;
 
 	i = 0;
-
 	while (dest[i] != '\0')
 		i++;
 	if (dest[i - 1] != '\n')
 	{
-		new_tab = malloc((ft_strlen(dest) + 2)* sizeof(char));
+		new_tab = malloc((ft_strlen(dest) + 2) * sizeof(char));
 		if (!new_tab)
 			return (NULL);
 		i = 0;
@@ -46,7 +45,7 @@ char	**ft_stock(char **dest, char *argv, int fd, int size)
 	int	i;
 
 	i = 0;
-	close (fd);
+	close(fd);
 	fd = open(argv, O_RDONLY);
 	if (size < 2)
 	{
@@ -62,7 +61,7 @@ char	**ft_stock(char **dest, char *argv, int fd, int size)
 	{
 		dest[i] = get_next_line(fd);
 		if (dest[0] == NULL)
-			return(NULL);
+			return (NULL);
 		dest[i] = ft_check_retour(dest[i]);
 		if (!dest)
 			return (NULL);
@@ -74,33 +73,30 @@ char	**ft_stock(char **dest, char *argv, int fd, int size)
 
 char	**ft_read_and_stock(char *argv)
 {
-	int size;
-	char *temp;
-	int	fd;
-	char **dest;
-	int readed;
+	int		size;
+	char	*temp;
+	int		fd;
+	char	**dest;
+	int		readed;
 
 	dest = NULL;
 	size = 0;
 	fd = open(argv, O_RDONLY);
 	readed = read(fd, 0, 0);
 	if (fd < 0 || readed < 0)
-		{
-			write(2, "Error\n", 6);
-			close(fd);
-			return (NULL);
-		}
+	{
+		write(2, "Error\n", 6);
+		close(fd);
+		return (NULL);
+	}
 	while (1)
 	{
 		temp = get_next_line(fd);
 		if (temp == NULL)
-			break;
+			break ;
 		size++;
 		free(temp);
 	}
 	close(fd);
 	return (ft_stock(dest, argv, fd, size));
 }
-
-
-

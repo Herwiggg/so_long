@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:28:32 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 14:51:27 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:22:16 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	move_player_top(t_data *data)
 		data->player.y = (y - 1) * 64;
 		data->player.x = x * 64;
 		data->move++;
+		data->flag = 1;
 		ft_display_map(*data);
 		ft_victory(data);
 	}
@@ -56,6 +57,7 @@ void	move_player_top(t_data *data)
 	else
 		return ;
 	data->move++;
+	data->flag = 1;
 	ft_display_map(*data);
 }
 
@@ -82,6 +84,7 @@ void	move_player_left(t_data *data)
 		data->player.y = y * 64;
 		data->player.x = (x - 1) * 64;
 		data->move++;
+		data->flag = 3;
 		ft_display_map(*data);
 		ft_victory(data);
 	}
@@ -103,6 +106,7 @@ void	move_player_left(t_data *data)
 	else
 		return ;
 	data->move++;
+	data->flag = 3;
 	ft_display_map(*data);
 }
 
@@ -129,6 +133,7 @@ void	move_player_right(t_data *data)
 		data->player.x = (x + 1) * 64;
 		data->map[y][x] = '0';
 		data->move++;
+		data->flag = 2;
 		ft_display_map(*data);
 		ft_victory(data);
 	}
@@ -150,6 +155,7 @@ void	move_player_right(t_data *data)
 	else
 		return ;
 	data->move++;
+	data->flag = 2;
 	ft_display_map(*data);
 }
 
@@ -176,6 +182,7 @@ void	move_player_down(t_data *data)
 		data->player.y = (y + 1) * 64;
 		data->player.x = x * 64;
 		data->move++;
+		data->flag = 0;
 		ft_display_map(*data);
 		ft_victory(data);
 	}
@@ -197,5 +204,6 @@ void	move_player_down(t_data *data)
 	else
 		return ;
 	data->move++;
+	data->flag = 0;
 	ft_display_map(*data);
 }

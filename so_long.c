@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:30:52 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 14:40:37 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:42:44 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (ft_is_a_valid_map(&data) == -1)
 		return (-1);
+	if (ft_malloc_struct(&data) == -1)
+		return (-1);
 	ft_stock_coords(&data);
+	ft_stock_coords2(&data);
 	ft_mlx_init(&data);
 	ft_display_map(data);
 	mlx_hook(data.mlx_wind, 2, (1L << 0), ft_handle_input, &data);

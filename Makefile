@@ -1,5 +1,5 @@
 NAME		= so_long
-CFLAGS		= -Wall -Wextra -Werror -g 
+CFLAGS		= -Wall -Wextra -Werror
 INCLUDES 	= -I/usr/include -Imlx
 MLX_FLAGS 	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 MLX_DIR 	= ./minilibx-linux

@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2024/03/27 14:58:18 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 20:48:16 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,17 @@ typedef struct s_data
 	int		img_height;
 	int		collectible;
 	int		move;
+	int		k;
+	int		l;
+	int		flag;
+	int		readed;
+	int		e;
+	int		c;
+	int		p;
+	int		y;
+	int		x;
+	int		_x;
+	int		_y;
 	t_coord	*wall_c;
 	t_coord	player;
 	t_coord	exit;
@@ -78,7 +89,7 @@ typedef struct s_data
 }			t_data;
 
 /*---------Parsing-----------*/
-char		**ft_read_and_stock(char *argv);
+char		**ft_read_and_stock(char *argv, t_data *data);
 char		**ft_stock(char **dest, char *argv, int fd, int size);
 char		*ft_check_retour(char *dest);
 
@@ -89,10 +100,10 @@ int			ft_check_dimension(char **argv);
 int			ft_check_rectangular(char **argv);
 int			ft_check_wall(char **argv);
 int			ft_check_wall2(char **argv);
-int			ft_check_elements(char **argv);
-int			ft_check_elements2(char **argv, int *x, int *y, int items,
-				t_data *data);
+int			ft_check_elements(char **argv, t_data *data);
+int			ft_check_elements2(char **argv, t_data *data);
 int			pathfinding(char **tab, int y, int x, int items);
+void		collect_nbr_item(char **argv, int items);
 
 /*---------MLX-----------*/
 void		ft_display_map(t_data data);
@@ -102,6 +113,8 @@ int			ft_exit(t_data *data);
 void		ft_mlx_init(t_data *data);
 void		ft_print_movements(t_data *data);
 int			ft_victory(t_data *data);
+void		ft_image_to_wind(t_data data, int *size_y, int *size_x);
+void		ft_display_map2(t_data data, int y, int x);
 
 /*---------Player moves-----------*/
 int			ft_check_above(t_data *data);
@@ -112,6 +125,7 @@ void		move_player_top(t_data *data);
 void		move_player_left(t_data *data);
 void		move_player_right(t_data *data);
 void		move_player_down(t_data *data);
+char		*image_player(t_data *data);
 
 /*---------Utils-----------*/
 int			ft_error_msg(char *str);
@@ -122,6 +136,7 @@ int			ft_count_len(char **map);
 char		**copy_double_tab(char **tab);
 char		**ft_doublefree(char **tab, int k);
 void		ft_stock_coords(t_data *data);
-void		ft_malloc_struct(t_data *data);
+void		ft_stock_coords2(t_data *data);
+int			ft_malloc_struct(t_data *data);
 
 #endif

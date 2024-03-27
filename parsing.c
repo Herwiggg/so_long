@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 20:17:55 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 16:55:42 by almichel         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:46:57 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ char	**ft_stock(char **dest, char *argv, int fd, int size)
 	int	i;
 
 	i = 0;
-	close(fd);
 	fd = open(argv, O_RDONLY);
 	if (size < 2)
 	{
-		write(2, "Error\n", 6);
-		write(2, "Map is not validdsn", 17);
+		printf("Error\n Map is not valid");
 		return (NULL);
 	}
 	dest = malloc((size + 1) * sizeof(char *));
@@ -71,19 +69,18 @@ char	**ft_stock(char **dest, char *argv, int fd, int size)
 	return (dest);
 }
 
-char	**ft_read_and_stock(char *argv)
+char	**ft_read_and_stock(char *argv, t_data *data)
 {
 	int		size;
 	char	*temp;
 	int		fd;
 	char	**dest;
-	int		readed;
 
 	dest = NULL;
 	size = 0;
 	fd = open(argv, O_RDONLY);
-	readed = read(fd, 0, 0);
-	if (fd < 0 || readed < 0)
+	data->readed = read(fd, 0, 0);
+	if (fd < 0 || data->readed < 0)
 	{
 		write(2, "Error\n", 6);
 		close(fd);

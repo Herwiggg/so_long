@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 20:19:45 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 14:49:22 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:57:49 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_check_ber(char *argv)
 
 	i = ft_strlen(argv);
 	if (argv[i - 1] != 'r' || argv[i - 2] != 'e' || argv[i - 3] != 'b' || argv[i
-			- 4] != '.')
+			- 4] != '.' || i <= 4)
 	{
 		write(2, "Error\n", 6);
 		write(2, "File is not a .ber\n", 19);

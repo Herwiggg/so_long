@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:30:52 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 19:33:52 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:43:28 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int	ft_is_a_valid_map2(t_data *data)
 {
+	int	items;
+
 	if (ft_check_elements(data->map, data) == -1)
 		return (ft_error_msg("Error\nBad ressources\n"));
 	if (ft_check_elements2(data->map, data) == -1)
 		return (ft_error_msg("Error\nBad ressources\n"));
-	collect_nbr_item(data->map, data-> items);
+	collect_nbr_item(data->map, data);
 	data->tab = copy_double_tab(data->map);
-	if (pathfinding(data->tab, data->y, data->x, data->items) == 0)
+	items = data->items;
+	if (pathfinding(data->tab, data->y, data->x, &items) == 0)
 		return (ft_error_msg2("Error\nNo path found\n", data->tab));
 	ft_doublefree(data->tab, ft_count_height(data->tab));
 	return (1);

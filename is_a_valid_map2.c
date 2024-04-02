@@ -6,13 +6,13 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 01:33:27 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 19:55:41 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:39:56 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	collect_nbr_item(char **argv, int items)
+void	collect_nbr_item(char **argv, t_data *data)
 {
 	int	i;
 	int	j;
@@ -24,7 +24,7 @@ void	collect_nbr_item(char **argv, int items)
 		while (argv[i][j] && argv[i][j] != '\n')
 		{
 			if (argv[i][j] == 'C' || argv[i][j] == 'E')
-				items++;
+				data->items++;
 			j++;
 		}
 		i++;
@@ -86,18 +86,18 @@ int	ft_check_elements(char **argv, t_data *data)
 	return (-1);
 }
 
-int	pathfinding(char **map, int y, int x, int items)
+int	pathfinding(char **map, int y, int x, int *items)
 {
 	if (map[y][x] == '1')
 		return (0);
 	if (map[y][x] == 'C' || map[y][x] == 'E')
-		items -= 1;
+		*items -= 1;
 	map[y][x] = '1';
 	pathfinding(map, y - 1, x, items);
 	pathfinding(map, y + 1, x, items);
 	pathfinding(map, y, x - 1, items);
 	pathfinding(map, y, x + 1, items);
-	if (items == 0)
+	if (*items == 0)
 		return (1);
 	return (0);
 }

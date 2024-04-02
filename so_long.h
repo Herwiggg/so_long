@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2024/03/27 22:18:11 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:40:13 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int			ft_check_wall(char **argv);
 int			ft_check_wall2(char **argv);
 int			ft_check_elements(char **argv, t_data *data);
 int			ft_check_elements2(char **argv, t_data *data);
-int			pathfinding(char **tab, int y, int x, int items);
-void		collect_nbr_item(char **argv, int items);
+int			pathfinding(char **tab, int y, int x, int *items);
+void		collect_nbr_item(char **argv, t_data *data);
 
 /*---------MLX-----------*/
 void		ft_display_map(t_data data);

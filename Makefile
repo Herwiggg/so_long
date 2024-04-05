@@ -1,12 +1,12 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 OBJS_DIR = obj
 
 SRCS = so_long.c parsing.c is_a_valid_map.c is_a_valid_map2.c utils.c display_map.c stock_coords.c handle_input.c exit.c utils2.c mlx_init.c player_move.c player_move2.c player_move3.c
 
-OBJS = $(patsubst src/%.c, $(OBJS_DIR)/%.o, $(SRCS))
+OBJS = $(SRCS:.c=.o)
 
 NAME = so_long
 
@@ -31,7 +31,6 @@ clean:
 
 fclean: clean
 	@make fclean -C ft_printf/
-	@make clean -C get_next_line/
 	@make fclean -C libft42/
 	rm -f $(NAME)
 

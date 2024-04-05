@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 20:17:55 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 18:46:57 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:07:07 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_stock(char **dest, char *argv, int fd, int size)
 	fd = open(argv, O_RDONLY);
 	if (size < 2)
 	{
-		printf("Error\n Map is not valid");
+		write(1, "Error\n Map is not valid", 23);
 		return (NULL);
 	}
 	dest = malloc((size + 1) * sizeof(char *));

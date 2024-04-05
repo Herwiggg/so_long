@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 20:19:45 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 22:29:33 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:05:59 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	ft_victory(t_data *data)
 	free(data->collectible_c);
 	free(data->wall_c);
 	mlx_destroy_window(data->mlx, data->mlx_wind);
-	printf("Victory ! Well done ;)\n");
+	write(1, "Victory ! Well done ;)\n", 24);
 	exit(EXIT_FAILURE);
 }

@@ -1,37 +1,39 @@
-NAME		= so_long
-CFLAGS		= -Wall -Wextra -Werror
-INCLUDES 	= -I/usr/include -Imlx
-MLX_FLAGS 	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-MLX_DIR 	= ./minilibx-linux
-MLX_LIB 	= $(MLX_DIR)/libmlx_Linux.a
-LIBFT_DIR	= ./libft42
-LIBFT_LIB	= $(LIBFT_DIR)/libft.a
-GNL_DIR 	= ./get_next_line
-GNL_LIB		= $(GNL_DIR)/gnl.a
-SRCS 		=	so_long.c parsing.c is_a_valid_map.c is_a_valid_map2.c utils.c display_map.c stock_coords.c handle_input.c exit.c utils2.c mlx_init.c player_move.c player_move2.c player_move3.c
-OBJS 		= $(SRCS:.c=.o)
+CC = cc
 
-all: $(MLX_LIB) $(LIBFT_LIB) $(GNL_DIR) $(NAME)
+CFLAGS = -Wall -Wextra -Werror
 
-.c.o:
-	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
+OBJS_DIR = obj
+
+SRCS = so_long.c parsing.c is_a_valid_map.c is_a_valid_map2.c utils.c display_map.c stock_coords.c handle_input.c exit.c utils2.c mlx_init.c player_move.c player_move2.c player_move3.c
+
+OBJS = $(patsubst src/%.c, $(OBJS_DIR)/%.o, $(SRCS))
+
+NAME = so_long
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT_LIB) $(GNL_LIB) 
+	@make -C libft42/
+	@make -C minilibx-linux/
+	$(CC) $(CFLAGS) $^ -o $@ minilibx-linux/libmlx_Linux.a libft42/libft.a get_next_line/gnl.a -lXext -lX11 -lm -lz -g3
 
-$(MLX_LIB):
-	@make -C $(MLX_DIR)
+$(OBJS_DIR)/%.o: src/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT_LIB): 
-	@make -C $(LIBFT_DIR)
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
-$(GNL_LIB): 
-	@make -C $(GNL_DIR)
+all: $(NAME)
 
 clean:
-	@rm -f $(OBJS)
+	@make clean -C minilibx-linux/
+	@make -C ft_printf/
+	@make clean -C libft42/
+	rm -f $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	@make fclean -C ft_printf/
+	@make fclean -C libft42/
+	rm -f $(NAME)
 
-re: clean all
+re: fclean all
+
+.PHONY: all clean fclean re

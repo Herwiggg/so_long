@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:41:31 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 14:35:47 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:01:35 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**copy_double_tab(char **tab)
 	map = malloc((ft_count_height(tab) + 1) * sizeof(char *));
 	if (!map)
 		return (NULL);
-	map[ft_count_height(tab)] = '\0';
+	map[ft_count_height(tab)] = NULL;
 	while (i < ft_count_height(tab))
 	{
 		map[i] = ft_strdup(tab[i]);

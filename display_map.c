@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:54:08 by almichel          #+#    #+#             */
-/*   Updated: 2024/03/27 20:47:53 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:30:53 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_image_to_wind(t_data data, int *_y, int *_x)
 			&data.line_length, &data.endian);
 	my_mlx_pixel_put(&data, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(data.mlx, data.mlx_wind, data.img, *_x, *_y);
+	free(data.img);
 }
 
 void	ft_display_map2(t_data data, int y, int x)

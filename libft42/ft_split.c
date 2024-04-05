@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:58:50 by almichel          #+#    #+#             */
-/*   Updated: 2024/01/27 02:59:11 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:43:40 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,4 @@ char	**ft_split(char const *s, char c)
 	tab[k] = NULL;
 	ft_strcpy(tab, s, c);
 	return (tab);
-}
-
-#include "stdio.h"
-
-int main()
-{
-
-
-	char str[] = " ";
-	ft_split = 
-	  for (int i = 0; str[i]; i++) {
-        printf("%s\n", str);
-	  }
 }

@@ -25,12 +25,13 @@ all: $(NAME)
 
 clean:
 	@make clean -C minilibx-linux/
-	@make -C ft_printf/
+	@make clean -C get_next_line/
 	@make clean -C libft42/
 	rm -f $(OBJS)
 
 fclean: clean
 	@make fclean -C ft_printf/
+	@make clean -C get_next_line/
 	@make fclean -C libft42/
 	rm -f $(NAME)
 

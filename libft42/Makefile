@@ -1,39 +1,68 @@
-NAME			= 	libft.a
+NAME = libft.a
 
-SRCS			=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memchr.c \
-					ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c \
-					ft_strnstr.c ft_strrchr.c ft_tolower.c ft_toupper.c ft_split.c ft_strjoin.c ft_itoa.c ft_strdup.c ft_substr.c \
-					ft_strtrim.c ft_strmapi.c ft_striteri.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putchar_fd.c
+SOURCES =   ft_atoi.c \
+			ft_isalpha.c \
+			ft_isdigit.c \
+			ft_memset.c \
+			ft_strdup.c \
+			ft_strlen.c \
+			ft_strrchr.c \
+			ft_toupper.c \
+			ft_isalnum.c \
+			ft_isascii.c \
+			ft_isprint.c \
+			ft_strchr.c \
+			ft_strlcpy.c \
+			ft_strncmp.c \
+			ft_tolower.c \
+			ft_strnstr.c \
+			ft_calloc.c \
+			ft_bzero.c \
+			ft_memcpy.c \
+			ft_memcmp.c \
+			ft_memmove.c \
+			ft_memchr.c \
+			ft_strlcat.c \
+			ft_putchar_fd.c \
+			ft_putstr_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
+			ft_substr.c \
+			ft_strjoin.c \
+			ft_split.c \
+			ft_strmapi.c \
+			ft_striteri.c \
+			ft_itoa.c \
+			ft_strtrim.c 
 
-OBJS			=	$(SRCS:.c=.o)
+SOURCE_BONUS = 	ft_lstnew.c \
+				ft_lstsize.c \
+				ft_lstadd_front.c \
+				ft_lstlast.c \
+				ft_lstadd_back.c \
+				ft_lstdelone.c \
+				ft_lstclear.c \
+				ft_lstiter.c \
+				ft_lstmap.c 
 
-BONUS			=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstmap.c \
-					ft_lstiter.c 
+OBJECTS = $(SOURCES:.c=.o)
 
-BONUS_OBJS		=	$(BONUS:.c=.o)
+OBJECTS_BONUS = $(SOURCE_BONUS:.c=.o)
 
-HEADER_FILES	= 	libft.h
+FLAGS = -Wall -Wextra -Werror
 
-CC				= 	gcc
+CC = gcc $(FLAGS)
 
-CFLAGS			= 	-Wall -Werror -Wextra
+all: $(NAME)
 
-RM				= 	rm -r
+clean:
+	rm -f $(OBJECTS)
+fclean: clean
+	rm -f $(NAME)
+re: fclean $(NAME)
 
-all:			$(NAME)
+$(NAME): $(SOURCES) $(OBJECTS)
+	ar rc $(NAME) $(OBJECTS)
 
-$(NAME):		$(OBJS)
-					ar rcs $(NAME) $(OBJS)
-
-clean:				
-				$(RM) $(OBJS)
-
-fclean:				clean
-							$(RM) $(NAME)
-
-re:							fclean $(NAME)
-
-bonus:			$(OBJS)	$(BONUS_OBJS)
-					ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-
-.PHONY:				all clean fclean re bonus
+bonus: $(SOURCES) $(OBJECTS) $(SOURCES_BONUS) $(OBJECTS_BONUS)
+	ar rc $(NAME) $(OBJECTS) $(OBJECTS_BONUS)

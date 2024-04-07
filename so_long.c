@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:30:52 by almichel          #+#    #+#             */
-/*   Updated: 2024/04/07 03:02:21 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/07 03:46:11 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_is_a_valid_map(t_data *data)
 		return (-1);
 	return (1);
 }
-
 
 int	main(int argc, char **argv)
 {

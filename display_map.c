@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:54:08 by almichel          #+#    #+#             */
-/*   Updated: 2024/04/07 03:26:37 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/07 03:45:59 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	set_img(t_data *data)
 			&(data->img_width), &(data->img_height));
 	data->img.img_exit = mlx_xpm_file_to_image(data->mlx, data->img.exit,
 			&(data->img_width), &(data->img_height));
-	data->img.img_collect = mlx_xpm_file_to_image(data->mlx,
-			data->img.collect, &(data->img_width), &(data->img_height));
-	data->img.img_player = mlx_xpm_file_to_image(data->mlx,
-			data->img.player, &(data->img_width), &(data->img_height));
+	data->img.img_collect = mlx_xpm_file_to_image(data->mlx, data->img.collect,
+			&(data->img_width), &(data->img_height));
+	data->img.img_player = mlx_xpm_file_to_image(data->mlx, data->img.player,
+			&(data->img_width), &(data->img_height));
 	data->img.img_player_top = mlx_xpm_file_to_image(data->mlx,
 			data->img.player_top, &(data->img_width), &(data->img_height));
 	data->img.img_player_right = mlx_xpm_file_to_image(data->mlx,
@@ -42,12 +42,11 @@ void	set_img(t_data *data)
 
 void	ft_image_to_wind(t_data data, int *_y, int *_x, void *img)
 {
-	data.addr = mlx_get_data_addr(img, &data.bits_per_pixel,
-			&data.line_length, &data.endian);
+	data.addr = mlx_get_data_addr(img, &data.bits_per_pixel, &data.line_length,
+			&data.endian);
 	my_mlx_pixel_put(&data, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(data.mlx, data.mlx_wind, img, *_x, *_y);
 }
-
 
 void	ft_display_map2(t_data data, int y, int x)
 {
@@ -65,7 +64,7 @@ void	ft_display_map2(t_data data, int y, int x)
 		{
 			if (image_player(&data) == 0)
 				ft_image_to_wind(data, &data._y, &data._x, data.img.img_player);
-		}	
+		}
 		data._x = data._x + 64;
 		x++;
 	}
@@ -89,32 +88,16 @@ void	ft_display_map(t_data data)
 	ft_print_movements(&data);
 }
 
-void	ft_print_movements(t_data *data)
-{
-	char	*move;
-	char	*phrase;
-
-	move = ft_itoa(data->move);
-	if (data->move == 0)
-		phrase = ft_strjoin("Movement : ", move);
-	else 
-		phrase = ft_strjoin("Movements : ", move);
-	mlx_string_put(data->mlx, data->mlx_wind, 40, 20, 99999, phrase);
-	write(1, phrase, ft_strlen(phrase));
-	write(1, "\n", 1);
-	data->move = data->move + 1;
-	free(move);
-	free(phrase);
-}
-
-int		image_player(t_data *data)
+int	image_player(t_data *data)
 {
 	if (data->flag == 1)
 		ft_image_to_wind(*data, &data->_y, &data->_x, data->img.img_player_top);
 	else if (data->flag == 2)
-		ft_image_to_wind(*data, &data->_y, &data->_x, data->img.img_player_right);
+		ft_image_to_wind(*data, &data->_y, &data->_x,
+			data->img.img_player_right);
 	else if (data->flag == 3)
-		ft_image_to_wind(*data, &data->_y, &data->_x, data->img.img_player_left);
+		ft_image_to_wind(*data, &data->_y, &data->_x,
+			data->img.img_player_left);
 	else if (data->flag == 0)
 		return (0);
 	return (1);

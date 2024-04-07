@@ -13,6 +13,7 @@ NAME = so_long
 $(NAME): $(OBJS)
 	@make -C libft42/
 	@make -C minilibx-linux/
+	@make -C get_next_line/
 	$(CC) $(CFLAGS) $^ -o $@ minilibx-linux/libmlx_Linux.a libft42/libft.a get_next_line/gnl.a -lXext -lX11 -lm -lz -g3
 
 $(OBJS_DIR)/%.o: src/%.c | $(OBJS_DIR)
@@ -25,11 +26,14 @@ all: $(NAME)
 
 clean:
 	@make clean -C minilibx-linux/
+	@make fclean -C libft42/
 	@make clean -C get_next_line/
 	rm -f $(OBJS)
 
 fclean: clean
 	@make fclean -C libft42/
+	@make clean -C get_next_line/
+	@make clean -C minilibx-linux/
 	rm -f $(NAME)
 
 re: fclean all

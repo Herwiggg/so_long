@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
+/*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:41:31 by almichel          #+#    #+#             */
-/*   Updated: 2024/04/05 14:01:35 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/07 03:46:07 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,22 @@ char	**ft_doublefree(char **tab, int k)
 		free(tab[i]);
 	free(tab);
 	return (NULL);
+}
+
+void	ft_print_movements(t_data *data)
+{
+	char	*move;
+	char	*phrase;
+
+	move = ft_itoa(data->move);
+	if (data->move == 0)
+		phrase = ft_strjoin("Movement : ", move);
+	else
+		phrase = ft_strjoin("Movements : ", move);
+	mlx_string_put(data->mlx, data->mlx_wind, 40, 20, 99999, phrase);
+	write(1, phrase, ft_strlen(phrase));
+	write(1, "\n", 1);
+	data->move = data->move + 1;
+	free(move);
+	free(phrase);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
+/*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2024/04/05 14:07:21 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/07 03:02:16 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,35 @@ typedef struct s_coord
 	int		x;
 }			t_coord;
 
+typedef struct img_s
+{
+	void	*img_floor;
+	void	*img_player;
+	void	*img_exit;
+	void	*img_wall;
+	void	*img_collect;
+	void	*img_player_top;
+	void	*img_player_left;
+	void	*img_player_right;
+	char	*player;
+	char	*floor;
+	char	*wall;
+	char	*collect;
+	char	*exit;
+	char	*player_top;
+	char	*player_right;
+	char	*player_left;
+}				t_img;
+
 typedef struct s_data
 {
-	char	**map;
-	char	**tab;
 	void	*mlx;
 	void	*mlx_wind;
+	char	**map;
+	char	**tab;
 	int		items;
 	int		wall;
-	void	*img;
+	t_img	img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -112,8 +132,9 @@ int			ft_exit(t_data *data);
 void		ft_mlx_init(t_data *data);
 void		ft_print_movements(t_data *data);
 int			ft_victory(t_data *data);
-void		ft_image_to_wind(t_data data, int *size_y, int *size_x);
+void		ft_image_to_wind(t_data data, int *_y, int *_x, void *img);
 void		ft_display_map2(t_data data, int y, int x);
+void		set_img(t_data *data);
 
 /*---------Player moves-----------*/
 int			ft_check_above(t_data *data);
@@ -124,7 +145,7 @@ void		move_player_top(t_data *data);
 void		move_player_left(t_data *data);
 void		move_player_right(t_data *data);
 void		move_player_down(t_data *data);
-char		*image_player(t_data *data);
+int			image_player(t_data *data);
 void		move_collectible1(t_data *data, int y, int x, int sign);
 void		move_victory1(t_data *data, int y, int x, int sign);
 void		move_empty1(t_data *data, int y, int x, int sign);

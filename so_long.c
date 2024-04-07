@@ -6,7 +6,7 @@
 /*   By: almichel <almichel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:30:52 by almichel          #+#    #+#             */
-/*   Updated: 2024/04/02 17:43:28 by almichel         ###   ########.fr       */
+/*   Updated: 2024/04/07 03:02:21 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ int	ft_is_a_valid_map(t_data *data)
 	return (1);
 }
 
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	data.map = NULL;
 	ft_bzero(&data, sizeof(t_data));
+	data.map = NULL;
 	if (argc < 2 || ft_check_ber(argv[1]) == -1)
 		return (-1);
 	data.map = ft_read_and_stock(argv[1], &data);
@@ -62,6 +63,7 @@ int	main(int argc, char **argv)
 	ft_stock_coords(&data);
 	ft_stock_coords2(&data);
 	ft_mlx_init(&data);
+	set_img(&data);
 	ft_display_map(data);
 	mlx_hook(data.mlx_wind, 2, (1L << 0), ft_handle_input, &data);
 	mlx_hook(data.mlx_wind, 17, (1L << 0), ft_exit, &data);
